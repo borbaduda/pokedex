@@ -119,10 +119,6 @@
 </ul>
 <body></body>
 
-  <!-- Container para os cards -->
-  <div class="card-container" id="cardContainer"></div>
-
-  <!-- Modal Template -->
   <div id="modalTemplate" class="modal">
       <div class="modal-content">
           <span class="close">&times;</span>
@@ -133,7 +129,6 @@
   </div>
 
   <script>
-      // Lista dos Pokémon com suas descrições e tipos
       const pokemonData = [
           { name: "Terapagos - Stellar Form", type: "Dragon / Psychic", description: "Terapagos é um Pokémon de forma majestosa com poderes estelares." },
           { name: "Iron Crown", type: "Steel / Fairy", description: "Iron Crown é um Pokémon com uma coroa metálica que simboliza seu poder." },
@@ -253,8 +248,6 @@
           { name: "Floragato", type: "Grass", description: "Floragato é um Pokémon com habilidades vegetais e uma aparência graciosa." },
           { name: "Sprigatito", type: "Grass", description: "Sprigatito é um Pokémon vegetal com uma aparência fofa e amigável." }
       ];
-
-      // Função para criar um card
       function createCard(pokemon) {
           const card = document.createElement('div');
           card.className = 'card';
@@ -271,8 +264,6 @@
           card.addEventListener('click', () => openModal(pokemon));
           return card;
       }
-
-      // Função para abrir o modal
       function openModal(pokemon) {
           const modal = document.getElementById('modalTemplate');
           const modalImg = modal.querySelector('img');
@@ -284,7 +275,6 @@
           modal.style.display = 'block';
       }
 
-      // Fechar o modal
       function closeModal() {
           const modal = document.getElementById('modalTemplate');
           modal.style.display = 'none';
@@ -292,8 +282,6 @@
 
       document.querySelector('.close').addEventListener('click', closeModal);
       document.querySelector('.btn-close-modal').addEventListener('click', closeModal);
-
-      // Adiciona os cards ao container
       const container = document.getElementById('cardContainer');
       pokemonData.forEach(pokemon => container.appendChild(createCard(pokemon)));
   </script>
