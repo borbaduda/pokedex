@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pagina Inicial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>"
+    <style type="text/css"> 
+          .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            width: 18rem;
+            margin: 16px;
+            text-align: center;
+            cursor: pointer; /* Adiciona cursor de pointer para indicar que é clicável */
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Estilos do Modal */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .modal-caption {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-close-modal {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Estilo do container de cards */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="pginicial.html">Pagina inicial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="pokemons.html">Pokemons</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="treinador.html">treinador</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="cadastre.html">cadastre</a>
+  </li>
+</ul>
+<body></body>
+
+  <!-- Container para os cards -->
+  <div class="card-container" id="cardContainer"></div>
+
+  <!-- Modal Template -->
+  <div id="modalTemplate" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <img src="" alt="Imagem do Pokémon">
+          <div class="modal-caption"></div>
+          <button class="btn-close-modal">Fechar</button>
+      </div>
+  </div>
+
+  <script>
+      // Lista dos Pokémon com suas descrições e tipos
+      const pokemonData = [
+          { name: "Terapagos - Stellar Form", type: "Dragon / Psychic", description: "Terapagos é um Pokémon de forma majestosa com poderes estelares." },
+          { name: "Iron Crown", type: "Steel / Fairy", description: "Iron Crown é um Pokémon com uma coroa metálica que simboliza seu poder." },
+          { name: "Iron Boulder", type: "Rock / Steel", description: "Iron Boulder é conhecido por sua força e resistência inabaláveis." },
+          { name: "Raging Bolt", type: "Electric / Dragon", description: "Raging Bolt é um Pokémon elétrico com habilidades dracônicas." },
+          { name: "Gouging Fire", type: "Fire / Fighting", description: "Gouging Fire é um Pokémon que mistura chamas intensas com habilidades de combate." },
+          { name: "Hydrapple", type: "Grass / Dragon", description: "Hydrapple possui características de um dragão e também de uma maçã mágica." },
+          { name: "Archaludon", type: "Steel / Dragon", description: "Archaludon é um Pokémon com características de aço e dragão, muito imponente." },
+          { name: "Ogerpon - Cornerstone Mask", type: "Rock / Ghost", description: "Ogerpon é um Pokémon com uma máscara de pedra e habilidades fantasmas." },
+          { name: "Fezandipiti", type: "Flying / Fire", description: "Fezandipiti é um Pokémon que combina habilidades aéreas com fogo." },
+          { name: "Munkidori", type: "Grass / Poison", description: "Munkidori é um Pokémon com poderes de planta e veneno." },
+          { name: "Okidogi", type: "Fighting / Ground", description: "Okidogi é um Pokémon com habilidades de luta e terra." },
+          { name: "Sinistcha", type: "Ghost / Dark", description: "Sinistcha é um Pokémon com um corpo fantasmagórico e características sombrias." },
+          { name: "Poltchageist", type: "Ghost / Fairy", description: "Poltchageist é conhecido por suas habilidades fantasmas e sua aura encantadora." },
+          { name: "Dipplin", type: "Grass / Dragon", description: "Dipplin é um Pokémon que combina características de planta e dragão." },
+          { name: "Iron Leaves", type: "Steel / Grass", description: "Iron Leaves é um Pokémon com habilidades de aço e planta." },
+          { name: "Walking Wake", type: "Water / Dragon", description: "Walking Wake é um Pokémon aquático com poderes dracônicos." },
+          { name: "Miraidon", type: "Electric / Dragon", description: "Miraidon é um Pokémon elétrico com uma aparência dracônica." },
+          { name: "Koraidon", type: "Dragon / Fighting", description: "Koraidon é um Pokémon que mistura características de dragão e combate." },
+          { name: "Iron Valiant", type: "Steel / Fairy", description: "Iron Valiant possui uma aparência de aço e habilidades encantadoras." },
+          { name: "Roaring Moon", type: "Dragon / Dark", description: "Roaring Moon é um Pokémon com habilidades de dragão e escuridão." },
+          { name: "Chi-Yu", type: "Fire / Dark", description: "Chi-Yu é um Pokémon de fogo com uma aura sombria." },
+          { name: "Ting-Lu", type: "Ground / Steel", description: "Ting-Lu é um Pokémon com habilidades de terra e aço." },
+          { name: "Chien-Pao", type: "Ice / Dark", description: "Chien-Pao combina poderes de gelo e escuridão." },
+          { name: "Wo-Chien", type: "Grass / Dark", description: "Wo-Chien é um Pokémon com habilidades de planta e escuridão." },
+          { name: "Gholdengo", type: "Ghost / Steel", description: "Gholdengo possui habilidades fantasmas e metálicas." },
+          { name: "Gimmighoul", type: "Ghost", description: "Gimmighoul é um Pokémon fantasma que se esconde em moedas." },
+          { name: "Baxcalibur", type: "Dragon / Ice", description: "Baxcalibur é um Pokémon dracônico com habilidades de gelo." },
+          { name: "Arctibax", type: "Dragon / Ice", description: "Arctibax possui características dracônicas e geladas." },
+          { name: "Frigibax", type: "Dragon / Ice", description: "Frigibax é um Pokémon com poderes de gelo e dragão." },
+          { name: "Iron Thorns", type: "Steel / Rock", description: "Iron Thorns é conhecido por sua robustez e habilidades rochosas." },
+          { name: "Iron Moth", type: "Steel / Bug", description: "Iron Moth é um Pokémon metálico com características de inseto." },
+          { name: "Iron Jugulis", type: "Steel / Dark", description: "Iron Jugulis combina aço com poderes sombrios." },
+          { name: "Iron Hands", type: "Steel / Fighting", description: "Iron Hands é um Pokémon de aço com habilidades de combate." },
+          { name: "Iron Bundle", type: "Steel / Water", description: "Iron Bundle é um Pokémon que mistura aço e água." },
+          { name: "Iron Treads", type: "Steel / Ground", description: "Iron Treads possui habilidades de aço e terra." },
+          { name: "Sandy Shocks", type: "Electric / Ground", description: "Sandy Shocks é um Pokémon elétrico com poderes de terra." },
+          { name: "Slither Wing", type: "Bug / Fighting", description: "Slither Wing combina características de inseto e combate." },
+          { name: "Flutter Mane", type: "Ghost / Fairy", description: "Flutter Mane é conhecido por suas habilidades fantasmagóricas e encantadoras." },
+          { name: "Brute Bonnet", type: "Grass / Fighting", description: "Brute Bonnet possui habilidades de planta e combate." },
+          { name: "Scream Tail", type: "Fairy / Psychic", description: "Scream Tail é um Pokémon com poderes encantadores e psíquicos." },
+          { name: "Great Tusk", type: "Ground / Fighting", description: "Great Tusk é um Pokémon com habilidades de terra e combate." },
+          { name: "Kingambit", type: "Dark / Steel", description: "Kingambit combina poderes sombrios e metálicos." },
+          { name: "Dudunsparce", type: "Normal", description: "Dudunsparce é um Pokémon normal conhecido por sua forma única." },
+          { name: "Farigiraf", type: "Normal / Psychic", description: "Farigiraf possui habilidades normais e psíquicas." },
+          { name: "Clodsire", type: "Ground / Poison", description: "Clodsire é um Pokémon de terra com poderes venenosos." },
+          { name: "Annihilape", type: "Fighting / Ghost", description: "Annihilape combina habilidades de combate e fantasmas." },
+          { name: "Tatsugiri", type: "Dragon / Water", description: "Tatsugiri é um Pokémon aquático com habilidades dracônicas." },
+          { name: "Dondozo", type: "Water", description: "Dondozo é um Pokémon aquático imenso e poderoso." },
+          { name: "Veluza", type: "Water / Psychic", description: "Veluza combina habilidades aquáticas com poderes psíquicos." },
+          { name: "Cetitan", type: "Ice", description: "Cetitan é um Pokémon gelado com grande resistência." },
+          { name: "Cetoddle", type: "Ice", description: "Cetoddle é um Pokémon com habilidades de gelo e uma aparência fofa." },
+          { name: "Flamigo", type: "Flying / Fire", description: "Flamigo é um Pokémon voador com habilidades de fogo." },
+          { name: "Houndstone", type: "Ghost", description: "Houndstone é um Pokémon fantasma com uma aparência imponente." },
+          { name: "Greavard", type: "Ghost", description: "Greavard é conhecido por suas características fantasmagóricas." },
+          { name: "Glimmora", type: "Rock / Poison", description: "Glimmora possui habilidades rochosas e venenosas." },
+          { name: "Glimmet", type: "Rock / Poison", description: "Glimmet é um Pokémon com características de rocha e veneno." },
+          { name: "Orthworm", type: "Steel / Ground", description: "Orthworm combina habilidades de aço e terra." },
+          { name: "Cyclizar", type: "Dragon / Grass", description: "Cyclizar é um Pokémon dracônico com poderes vegetais." },
+          { name: "Revavroom", type: "Steel / Poison", description: "Revavroom é conhecido por suas habilidades metálicas e venenosas." },
+          { name: "Varoom", type: "Steel / Poison", description: "Varoom é um Pokémon com características de aço e veneno." },
+          { name: "Palafin", type: "Water", description: "Palafin é um Pokémon aquático que possui grande agilidade." },
+          { name: "Finizen", type: "Water", description: "Finizen é um Pokémon de água com uma aparência amigável." },
+          { name: "Bombirdier", type: "Flying / Dark", description: "Bombirdier combina habilidades aéreas com poderes sombrios." },
+          { name: "Wugtrio", type: "Water / Ground", description: "Wugtrio possui habilidades aquáticas e de terra." },
+          { name: "Wiglett", type: "Water", description: "Wiglett é um Pokémon aquático com uma aparência intrigante." },
+          { name: "Tinkaton", type: "Fairy / Steel", description: "Tinkaton combina características encantadoras e metálicas." },
+          { name: "Espathra", type: "Psychic / Flying", description: "Espathra é um Pokémon com habilidades psíquicas e aéreas." },
+          { name: "Flittle", type: "Psychic", description: "Flittle possui habilidades psíquicas com uma aparência pequena e fofa." },
+          { name: "Rabsca", type: "Bug / Psychic", description: "Rabsca é um Pokémon com poderes inseto e psíquicos." },
+          { name: "Rellor", type: "Bug / Rock", description: "Rellor é conhecido por suas habilidades de inseto e rocha." },
+          { name: "Scovillain", type: "Fire / Grass", description: "Scovillain é um Pokémon com habilidades de fogo e planta." },
+          { name: "Capsakid", type: "Grass", description: "Capsakid é um Pokémon vegetal com habilidades de planta." },
+          { name: "Klawf", type: "Rock", description: "Klawf é um Pokémon rochoso com uma aparência robusta." },
+          { name: "Toedscruel", type: "Grass / Poison", description: "Toedscruel combina habilidades vegetais e venenosas." },
+          { name: "Toedscool", type: "Grass / Poison", description: "Toedscool é um Pokémon com características de planta e veneno." },
+          { name: "Brambleghast", type: "Grass / Ghost", description: "Brambleghast é um Pokémon fantasmagórico com habilidades vegetais." },
+          { name: "Bramblin", type: "Grass / Ghost", description: "Bramblin possui uma aparência de planta com habilidades fantasmas." },
+          { name: "Grafaiai", type: "Poison / Dark", description: "Grafaiai combina poderes venenosos e sombrios." },
+          { name: "Shroodle", type: "Poison", description: "Shroodle é um Pokémon venenoso com uma aparência intrigante." },
+          { name: "Mabosstiff", type: "Dark", description: "Mabosstiff é um Pokémon sombrio com uma presença marcante." },
+          { name: "Maschiff", type: "Dark", description: "Maschiff possui características sombrias e uma aparência forte." },
+          { name: "Kilowattrel", type: "Electric / Flying", description: "Kilowattrel é um Pokémon elétrico com habilidades aéreas." },
+          { name: "Wattrel", type: "Electric / Flying", description: "Wattrel é conhecido por suas habilidades elétricas e aéreas." },
+          { name: "Bellibolt", type: "Electric", description: "Bellibolt é um Pokémon elétrico com uma aparência marcante." },
+          { name: "Tadbulb", type: "Electric", description: "Tadbulb é um Pokémon com características elétricas e uma aparência pequena." },
+          { name: "Ceruledge", type: "Fire / Ghost", description: "Ceruledge combina habilidades de fogo e fantasmagóricas." },
+          { name: "Armarouge", type: "Fire / Psychic", description: "Armarouge é um Pokémon com habilidades de fogo e psíquicas." },
+          { name: "Charcadet", type: "Fire", description: "Charcadet é um Pokémon de fogo com uma aparência cativante." },
+          { name: "Garganacl", type: "Rock / Salt", description: "Garganacl é um Pokémon rochoso com propriedades salinas." },
+          { name: "Naclstack", type: "Rock / Salt", description: "Naclstack é conhecido por suas características rochosas e salinas." },
+          { name: "Nacli", type: "Rock / Salt", description: "Nacli possui habilidades rochosas e propriedades salinas." },
+          { name: "Squawkabilly", type: "Flying", description: "Squawkabilly é um Pokémon voador com uma aparência única." },
+          { name: "Arboliva", type: "Grass", description: "Arboliva é um Pokémon vegetal com habilidades de planta." },
+          { name: "Dolliv", type: "Grass", description: "Dolliv possui características vegetais com uma aparência pequena." },
+          { name: "Smoliv", type: "Grass", description: "Smoliv é um Pokémon de planta com uma aparência fofa." },
+          { name: "Dachsbun", type: "Fairy", description: "Dachsbun é um Pokémon encantador com habilidades de fada." },
+          { name: "Fidough", type: "Fairy", description: "Fidough é conhecido por suas habilidades encantadoras e aparência fofa." },
+          { name: "Maushold", type: "Normal", description: "Maushold é um Pokémon normal com uma presença simpática." },
+          { name: "Tandemaus", type: "Normal", description: "Tandemaus possui habilidades normais e uma aparência pequena." },
+          { name: "Pawmot", type: "Electric", description: "Pawmot é um Pokémon elétrico com uma aparência enérgica." },
+          { name: "Pawmo", type: "Electric", description: "Pawmo é conhecido por suas habilidades elétricas e uma aparência marcante." },
+          { name: "Pawmi", type: "Electric", description: "Pawmi possui características elétricas e uma aparência pequena." },
+          { name: "Lokix", type: "Bug / Dark", description: "Lokix é um Pokémon com habilidades de inseto e sombrias." },
+          { name: "Nymble", type: "Bug", description: "Nymble é um Pokémon inseto com uma aparência pequena e fofa." },
+          { name: "Spidops", type: "Bug", description: "Spidops é conhecido por suas habilidades de inseto e uma aparência ágil." },
+          { name: "Tarountula", type: "Bug", description: "Tarountula é um Pokémon com habilidades inseto e uma presença intrigante." },
+          { name: "Oinkologne", type: "Normal", description: "Oinkologne é um Pokémon normal com uma aparência distinta." },
+          { name: "Lechonk", type: "Normal", description: "Lechonk possui características normais e uma aparência amigável." },
+          { name: "Quaquaval", type: "Water / Fighting", description: "Quaquaval combina habilidades aquáticas e de combate." },
+          { name: "Quaxwell", type: "Water / Fighting", description: "Quaxwell é conhecido por suas habilidades de água e combate." },
+          { name: "Quaxly", type: "Water / Fighting", description: "Quaxly é um Pokémon com características aquáticas e de luta." },
+          { name: "Skeledirge", type: "Fire / Ghost", description: "Skeledirge possui habilidades de fogo e fantasmagóricas." },
+          { name: "Crocalor", type: "Fire / Ghost", description: "Crocalor é um Pokémon com poderes de fogo e características fantasmas." },
+          { name: "Fuecoco", type: "Fire", description: "Fuecoco é um Pokémon de fogo com uma aparência cativante." },
+          { name: "Meowscarada", type: "Grass / Ghost", description: "Meowscarada combina habilidades vegetais com características fantasmas." },
+          { name: "Floragato", type: "Grass", description: "Floragato é um Pokémon com habilidades vegetais e uma aparência graciosa." },
+          { name: "Sprigatito", type: "Grass", description: "Sprigatito é um Pokémon vegetal com uma aparência fofa e amigável." }
+      ];
+
+      // Função para criar um card
+      function createCard(pokemon) {
+          const card = document.createElement('div');
+          card.className = 'card';
+          
+          card.innerHTML = `
+              <img src="https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/${pokemon.name.toLowerCase().replace(/ /g, '-')}.avif" alt="${pokemon.name}">
+              <div class="card-body">
+                  <h5 class="card-title">${pokemon.name}</h5>
+                  <p class="card-text">${pokemon.type}</p>
+                  <a href="#" class="btn btn-primary" data-name="${pokemon.name}" data-description="${pokemon.description}" data-type="${pokemon.type}">Veja mais informações</a>
+              </div>
+          `;
+          
+          card.addEventListener('click', () => openModal(pokemon));
+          return card;
+      }
+
+      // Função para abrir o modal
+      function openModal(pokemon) {
+          const modal = document.getElementById('modalTemplate');
+          const modalImg = modal.querySelector('img');
+          const modalCaption = modal.querySelector('.modal-caption');
+
+          modalImg.src = `https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/${pokemon.name.toLowerCase().replace(/ /g, '-')}.avif`;
+          modalCaption.innerHTML = `<h4>${pokemon.name}</h4><p>Tipo: ${pokemon.type}</p><p>${pokemon.description}</p>`;
+
+          modal.style.display = 'block';
+      }
+
+      // Fechar o modal
+      function closeModal() {
+          const modal = document.getElementById('modalTemplate');
+          modal.style.display = 'none';
+      }
+
+      document.querySelector('.close').addEventListener('click', closeModal);
+      document.querySelector('.btn-close-modal').addEventListener('click', closeModal);
+
+      // Adiciona os cards ao container
+      const container = document.getElementById('cardContainer');
+      pokemonData.forEach(pokemon => container.appendChild(createCard(pokemon)));
+  </script>
+
+
+
+
+
+
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+</body>
+</html>
