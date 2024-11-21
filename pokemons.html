@@ -1,297 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Pagina Inicial</title>
+    <title>Pokemons</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>"
     <style type="text/css"> 
-          .card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 16px;
-            width: 18rem;
-            margin: 16px;
-            text-align: center;
-            cursor: pointer; /* Adiciona cursor de pointer para indicar que é clicável */
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .card-body {
-            padding: 10px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Estilos do Modal */
-        .modal {
-            display: none; /* Escondido por padrão */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .modal-caption {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .btn-close-modal {
-            margin-top: 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Estilo do container de cards */
-        .card-container {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .card p {
+            padding: 0 10px 10px;
+            color: #555;
+        }
+        .divbotao{
+            width: 100%;
+            text-align: center;
+       }
+       .corletra{
+            color: snow;
+        }
+        .centro{
+          text-align: center;
+          justify-content: center;
+        }
+        .beck{
+          background-color: rgb(71, 71, 71);
         }
     </style>
 </head>
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link" href="pginicial.html">Pagina inicial</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="pokemons.html">Pokemons</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="treinador.html">treinador</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="cadastre.html">cadastre</a>
-  </li>
-</ul>
-<body></body>
-
-  <div id="modalTemplate" class="modal">
-      <div class="modal-content">
-          <span class="close">&times;</span>
-          <img src="" alt="Imagem do Pokémon">
-          <div class="modal-caption"></div>
-          <button class="btn-close-modal">Fechar</button>
-      </div>
-  </div>
-
-  <script>
-      const pokemonData = [
-          { name: "Terapagos - Stellar Form", type: "Dragon / Psychic", description: "Terapagos é um Pokémon de forma majestosa com poderes estelares." },
-          { name: "Iron Crown", type: "Steel / Fairy", description: "Iron Crown é um Pokémon com uma coroa metálica que simboliza seu poder." },
-          { name: "Iron Boulder", type: "Rock / Steel", description: "Iron Boulder é conhecido por sua força e resistência inabaláveis." },
-          { name: "Raging Bolt", type: "Electric / Dragon", description: "Raging Bolt é um Pokémon elétrico com habilidades dracônicas." },
-          { name: "Gouging Fire", type: "Fire / Fighting", description: "Gouging Fire é um Pokémon que mistura chamas intensas com habilidades de combate." },
-          { name: "Hydrapple", type: "Grass / Dragon", description: "Hydrapple possui características de um dragão e também de uma maçã mágica." },
-          { name: "Archaludon", type: "Steel / Dragon", description: "Archaludon é um Pokémon com características de aço e dragão, muito imponente." },
-          { name: "Ogerpon - Cornerstone Mask", type: "Rock / Ghost", description: "Ogerpon é um Pokémon com uma máscara de pedra e habilidades fantasmas." },
-          { name: "Fezandipiti", type: "Flying / Fire", description: "Fezandipiti é um Pokémon que combina habilidades aéreas com fogo." },
-          { name: "Munkidori", type: "Grass / Poison", description: "Munkidori é um Pokémon com poderes de planta e veneno." },
-          { name: "Okidogi", type: "Fighting / Ground", description: "Okidogi é um Pokémon com habilidades de luta e terra." },
-          { name: "Sinistcha", type: "Ghost / Dark", description: "Sinistcha é um Pokémon com um corpo fantasmagórico e características sombrias." },
-          { name: "Poltchageist", type: "Ghost / Fairy", description: "Poltchageist é conhecido por suas habilidades fantasmas e sua aura encantadora." },
-          { name: "Dipplin", type: "Grass / Dragon", description: "Dipplin é um Pokémon que combina características de planta e dragão." },
-          { name: "Iron Leaves", type: "Steel / Grass", description: "Iron Leaves é um Pokémon com habilidades de aço e planta." },
-          { name: "Walking Wake", type: "Water / Dragon", description: "Walking Wake é um Pokémon aquático com poderes dracônicos." },
-          { name: "Miraidon", type: "Electric / Dragon", description: "Miraidon é um Pokémon elétrico com uma aparência dracônica." },
-          { name: "Koraidon", type: "Dragon / Fighting", description: "Koraidon é um Pokémon que mistura características de dragão e combate." },
-          { name: "Iron Valiant", type: "Steel / Fairy", description: "Iron Valiant possui uma aparência de aço e habilidades encantadoras." },
-          { name: "Roaring Moon", type: "Dragon / Dark", description: "Roaring Moon é um Pokémon com habilidades de dragão e escuridão." },
-          { name: "Chi-Yu", type: "Fire / Dark", description: "Chi-Yu é um Pokémon de fogo com uma aura sombria." },
-          { name: "Ting-Lu", type: "Ground / Steel", description: "Ting-Lu é um Pokémon com habilidades de terra e aço." },
-          { name: "Chien-Pao", type: "Ice / Dark", description: "Chien-Pao combina poderes de gelo e escuridão." },
-          { name: "Wo-Chien", type: "Grass / Dark", description: "Wo-Chien é um Pokémon com habilidades de planta e escuridão." },
-          { name: "Gholdengo", type: "Ghost / Steel", description: "Gholdengo possui habilidades fantasmas e metálicas." },
-          { name: "Gimmighoul", type: "Ghost", description: "Gimmighoul é um Pokémon fantasma que se esconde em moedas." },
-          { name: "Baxcalibur", type: "Dragon / Ice", description: "Baxcalibur é um Pokémon dracônico com habilidades de gelo." },
-          { name: "Arctibax", type: "Dragon / Ice", description: "Arctibax possui características dracônicas e geladas." },
-          { name: "Frigibax", type: "Dragon / Ice", description: "Frigibax é um Pokémon com poderes de gelo e dragão." },
-          { name: "Iron Thorns", type: "Steel / Rock", description: "Iron Thorns é conhecido por sua robustez e habilidades rochosas." },
-          { name: "Iron Moth", type: "Steel / Bug", description: "Iron Moth é um Pokémon metálico com características de inseto." },
-          { name: "Iron Jugulis", type: "Steel / Dark", description: "Iron Jugulis combina aço com poderes sombrios." },
-          { name: "Iron Hands", type: "Steel / Fighting", description: "Iron Hands é um Pokémon de aço com habilidades de combate." },
-          { name: "Iron Bundle", type: "Steel / Water", description: "Iron Bundle é um Pokémon que mistura aço e água." },
-          { name: "Iron Treads", type: "Steel / Ground", description: "Iron Treads possui habilidades de aço e terra." },
-          { name: "Sandy Shocks", type: "Electric / Ground", description: "Sandy Shocks é um Pokémon elétrico com poderes de terra." },
-          { name: "Slither Wing", type: "Bug / Fighting", description: "Slither Wing combina características de inseto e combate." },
-          { name: "Flutter Mane", type: "Ghost / Fairy", description: "Flutter Mane é conhecido por suas habilidades fantasmagóricas e encantadoras." },
-          { name: "Brute Bonnet", type: "Grass / Fighting", description: "Brute Bonnet possui habilidades de planta e combate." },
-          { name: "Scream Tail", type: "Fairy / Psychic", description: "Scream Tail é um Pokémon com poderes encantadores e psíquicos." },
-          { name: "Great Tusk", type: "Ground / Fighting", description: "Great Tusk é um Pokémon com habilidades de terra e combate." },
-          { name: "Kingambit", type: "Dark / Steel", description: "Kingambit combina poderes sombrios e metálicos." },
-          { name: "Dudunsparce", type: "Normal", description: "Dudunsparce é um Pokémon normal conhecido por sua forma única." },
-          { name: "Farigiraf", type: "Normal / Psychic", description: "Farigiraf possui habilidades normais e psíquicas." },
-          { name: "Clodsire", type: "Ground / Poison", description: "Clodsire é um Pokémon de terra com poderes venenosos." },
-          { name: "Annihilape", type: "Fighting / Ghost", description: "Annihilape combina habilidades de combate e fantasmas." },
-          { name: "Tatsugiri", type: "Dragon / Water", description: "Tatsugiri é um Pokémon aquático com habilidades dracônicas." },
-          { name: "Dondozo", type: "Water", description: "Dondozo é um Pokémon aquático imenso e poderoso." },
-          { name: "Veluza", type: "Water / Psychic", description: "Veluza combina habilidades aquáticas com poderes psíquicos." },
-          { name: "Cetitan", type: "Ice", description: "Cetitan é um Pokémon gelado com grande resistência." },
-          { name: "Cetoddle", type: "Ice", description: "Cetoddle é um Pokémon com habilidades de gelo e uma aparência fofa." },
-          { name: "Flamigo", type: "Flying / Fire", description: "Flamigo é um Pokémon voador com habilidades de fogo." },
-          { name: "Houndstone", type: "Ghost", description: "Houndstone é um Pokémon fantasma com uma aparência imponente." },
-          { name: "Greavard", type: "Ghost", description: "Greavard é conhecido por suas características fantasmagóricas." },
-          { name: "Glimmora", type: "Rock / Poison", description: "Glimmora possui habilidades rochosas e venenosas." },
-          { name: "Glimmet", type: "Rock / Poison", description: "Glimmet é um Pokémon com características de rocha e veneno." },
-          { name: "Orthworm", type: "Steel / Ground", description: "Orthworm combina habilidades de aço e terra." },
-          { name: "Cyclizar", type: "Dragon / Grass", description: "Cyclizar é um Pokémon dracônico com poderes vegetais." },
-          { name: "Revavroom", type: "Steel / Poison", description: "Revavroom é conhecido por suas habilidades metálicas e venenosas." },
-          { name: "Varoom", type: "Steel / Poison", description: "Varoom é um Pokémon com características de aço e veneno." },
-          { name: "Palafin", type: "Water", description: "Palafin é um Pokémon aquático que possui grande agilidade." },
-          { name: "Finizen", type: "Water", description: "Finizen é um Pokémon de água com uma aparência amigável." },
-          { name: "Bombirdier", type: "Flying / Dark", description: "Bombirdier combina habilidades aéreas com poderes sombrios." },
-          { name: "Wugtrio", type: "Water / Ground", description: "Wugtrio possui habilidades aquáticas e de terra." },
-          { name: "Wiglett", type: "Water", description: "Wiglett é um Pokémon aquático com uma aparência intrigante." },
-          { name: "Tinkaton", type: "Fairy / Steel", description: "Tinkaton combina características encantadoras e metálicas." },
-          { name: "Espathra", type: "Psychic / Flying", description: "Espathra é um Pokémon com habilidades psíquicas e aéreas." },
-          { name: "Flittle", type: "Psychic", description: "Flittle possui habilidades psíquicas com uma aparência pequena e fofa." },
-          { name: "Rabsca", type: "Bug / Psychic", description: "Rabsca é um Pokémon com poderes inseto e psíquicos." },
-          { name: "Rellor", type: "Bug / Rock", description: "Rellor é conhecido por suas habilidades de inseto e rocha." },
-          { name: "Scovillain", type: "Fire / Grass", description: "Scovillain é um Pokémon com habilidades de fogo e planta." },
-          { name: "Capsakid", type: "Grass", description: "Capsakid é um Pokémon vegetal com habilidades de planta." },
-          { name: "Klawf", type: "Rock", description: "Klawf é um Pokémon rochoso com uma aparência robusta." },
-          { name: "Toedscruel", type: "Grass / Poison", description: "Toedscruel combina habilidades vegetais e venenosas." },
-          { name: "Toedscool", type: "Grass / Poison", description: "Toedscool é um Pokémon com características de planta e veneno." },
-          { name: "Brambleghast", type: "Grass / Ghost", description: "Brambleghast é um Pokémon fantasmagórico com habilidades vegetais." },
-          { name: "Bramblin", type: "Grass / Ghost", description: "Bramblin possui uma aparência de planta com habilidades fantasmas." },
-          { name: "Grafaiai", type: "Poison / Dark", description: "Grafaiai combina poderes venenosos e sombrios." },
-          { name: "Shroodle", type: "Poison", description: "Shroodle é um Pokémon venenoso com uma aparência intrigante." },
-          { name: "Mabosstiff", type: "Dark", description: "Mabosstiff é um Pokémon sombrio com uma presença marcante." },
-          { name: "Maschiff", type: "Dark", description: "Maschiff possui características sombrias e uma aparência forte." },
-          { name: "Kilowattrel", type: "Electric / Flying", description: "Kilowattrel é um Pokémon elétrico com habilidades aéreas." },
-          { name: "Wattrel", type: "Electric / Flying", description: "Wattrel é conhecido por suas habilidades elétricas e aéreas." },
-          { name: "Bellibolt", type: "Electric", description: "Bellibolt é um Pokémon elétrico com uma aparência marcante." },
-          { name: "Tadbulb", type: "Electric", description: "Tadbulb é um Pokémon com características elétricas e uma aparência pequena." },
-          { name: "Ceruledge", type: "Fire / Ghost", description: "Ceruledge combina habilidades de fogo e fantasmagóricas." },
-          { name: "Armarouge", type: "Fire / Psychic", description: "Armarouge é um Pokémon com habilidades de fogo e psíquicas." },
-          { name: "Charcadet", type: "Fire", description: "Charcadet é um Pokémon de fogo com uma aparência cativante." },
-          { name: "Garganacl", type: "Rock / Salt", description: "Garganacl é um Pokémon rochoso com propriedades salinas." },
-          { name: "Naclstack", type: "Rock / Salt", description: "Naclstack é conhecido por suas características rochosas e salinas." },
-          { name: "Nacli", type: "Rock / Salt", description: "Nacli possui habilidades rochosas e propriedades salinas." },
-          { name: "Squawkabilly", type: "Flying", description: "Squawkabilly é um Pokémon voador com uma aparência única." },
-          { name: "Arboliva", type: "Grass", description: "Arboliva é um Pokémon vegetal com habilidades de planta." },
-          { name: "Dolliv", type: "Grass", description: "Dolliv possui características vegetais com uma aparência pequena." },
-          { name: "Smoliv", type: "Grass", description: "Smoliv é um Pokémon de planta com uma aparência fofa." },
-          { name: "Dachsbun", type: "Fairy", description: "Dachsbun é um Pokémon encantador com habilidades de fada." },
-          { name: "Fidough", type: "Fairy", description: "Fidough é conhecido por suas habilidades encantadoras e aparência fofa." },
-          { name: "Maushold", type: "Normal", description: "Maushold é um Pokémon normal com uma presença simpática." },
-          { name: "Tandemaus", type: "Normal", description: "Tandemaus possui habilidades normais e uma aparência pequena." },
-          { name: "Pawmot", type: "Electric", description: "Pawmot é um Pokémon elétrico com uma aparência enérgica." },
-          { name: "Pawmo", type: "Electric", description: "Pawmo é conhecido por suas habilidades elétricas e uma aparência marcante." },
-          { name: "Pawmi", type: "Electric", description: "Pawmi possui características elétricas e uma aparência pequena." },
-          { name: "Lokix", type: "Bug / Dark", description: "Lokix é um Pokémon com habilidades de inseto e sombrias." },
-          { name: "Nymble", type: "Bug", description: "Nymble é um Pokémon inseto com uma aparência pequena e fofa." },
-          { name: "Spidops", type: "Bug", description: "Spidops é conhecido por suas habilidades de inseto e uma aparência ágil." },
-          { name: "Tarountula", type: "Bug", description: "Tarountula é um Pokémon com habilidades inseto e uma presença intrigante." },
-          { name: "Oinkologne", type: "Normal", description: "Oinkologne é um Pokémon normal com uma aparência distinta." },
-          { name: "Lechonk", type: "Normal", description: "Lechonk possui características normais e uma aparência amigável." },
-          { name: "Quaquaval", type: "Water / Fighting", description: "Quaquaval combina habilidades aquáticas e de combate." },
-          { name: "Quaxwell", type: "Water / Fighting", description: "Quaxwell é conhecido por suas habilidades de água e combate." },
-          { name: "Quaxly", type: "Water / Fighting", description: "Quaxly é um Pokémon com características aquáticas e de luta." },
-          { name: "Skeledirge", type: "Fire / Ghost", description: "Skeledirge possui habilidades de fogo e fantasmagóricas." },
-          { name: "Crocalor", type: "Fire / Ghost", description: "Crocalor é um Pokémon com poderes de fogo e características fantasmas." },
-          { name: "Fuecoco", type: "Fire", description: "Fuecoco é um Pokémon de fogo com uma aparência cativante." },
-          { name: "Meowscarada", type: "Grass / Ghost", description: "Meowscarada combina habilidades vegetais com características fantasmas." },
-          { name: "Floragato", type: "Grass", description: "Floragato é um Pokémon com habilidades vegetais e uma aparência graciosa." },
-          { name: "Sprigatito", type: "Grass", description: "Sprigatito é um Pokémon vegetal com uma aparência fofa e amigável." }
-      ];
-      function createCard(pokemon) {
-          const card = document.createElement('div');
-          card.className = 'card';
-          
-          card.innerHTML = `
-              <img src="https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/${pokemon.name.toLowerCase().replace(/ /g, '-')}.avif" alt="${pokemon.name}">
-              <div class="card-body">
-                  <h5 class="card-title">${pokemon.name}</h5>
-                  <p class="card-text">${pokemon.type}</p>
-                  <a href="#" class="btn btn-primary" data-name="${pokemon.name}" data-description="${pokemon.description}" data-type="${pokemon.type}">Veja mais informações</a>
-              </div>
-          `;
-          
-          card.addEventListener('click', () => openModal(pokemon));
-          return card;
-      }
-      function openModal(pokemon) {
-          const modal = document.getElementById('modalTemplate');
-          const modalImg = modal.querySelector('img');
-          const modalCaption = modal.querySelector('.modal-caption');
-
-          modalImg.src = `https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/${pokemon.name.toLowerCase().replace(/ /g, '-')}.avif`;
-          modalCaption.innerHTML = `<h4>${pokemon.name}</h4><p>Tipo: ${pokemon.type}</p><p>${pokemon.description}</p>`;
-
-          modal.style.display = 'block';
-      }
-
-      function closeModal() {
-          const modal = document.getElementById('modalTemplate');
-          modal.style.display = 'none';
-      }
-
-      document.querySelector('.close').addEventListener('click', closeModal);
-      document.querySelector('.btn-close-modal').addEventListener('click', closeModal);
-      const container = document.getElementById('cardContainer');
-      pokemonData.forEach(pokemon => container.appendChild(createCard(pokemon)));
-  </script>
 
 
+<body>
+    <div class="divbotao">
+        <ul class="nav centro">
+            <li class="nav-item beck">
+              <a class="nav-link corletra" aria-current="page" href="pginicial.html">Pagina inicial</a>
+            </li>
+            <li class="nav-item beck">
+              <a class="nav-link active corletra" href="pokemons.html">Pokemons</a>
+            </li>
+            <li class="nav-item beck">
+              <a class="nav-link corletra" href="treinador.html">treinador</a>
+            </li>
+            <li class="nav-item beck">
+              <a class="nav-link corletra" href="cadastre.html">cadastre</a>
+            </li>
+          </ul>
+    </div>
 
-
-
-
-
+        <div class="card"> 
+            <img src="https://th.bing.com/th/id/OIP.xu-Uf3-IXraUA4iLKruh1wAAAA?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Tatsugiri (Stretchy Form)">
+            <h2>Tatsugiri (Stretchy Form)</h2>
+            <p>Um Pokémon pequeno e ágil que se assemelha a um sushi. Ele é conhecido por sua habilidade de mudar de forma.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.AJQGj1FUGH4s5bxda2-7lAAAAA?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Tatsugiri (Droopy Form)">
+            <h2>Tatsugiri (Droopy Form)</h2>
+            <p>Outra forma de Tatsugiri, com uma aparência mais relaxada e caída.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.R1l19Od0SXnNRD4PNf4zjAHaHa?w=174&h=180&c=7&r=0&o=5&pid=1.7" alt="Tatsugiri (Curly Form)">
+            <h2>Tatsugiri (Curly Form)</h2>
+            <p>A terceira forma de Tatsugiri, com um corpo enrolado.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.SjruNS5ILLVaJgjhjLu_eQHaEz?w=236&h=180&c=7&r=0&o=5&pid=1.7" alt="Dondozo">
+            <h2>Dondozo</h2>
+            <p>Um grande Pokémon aquático que se destaca por sua força e resistência.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.4gmB9C1gSN1DvCRuSbnPmAHaHa?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Veluza">
+            <h2>Veluza</h2>
+            <p>Um Pokémon peixe rápido e ágil, conhecido por suas habilidades de natação.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.bIYNG0M9BVWpge95wCDPzgHaJ9?w=120&h=180&c=7&r=0&o=5&pid=1.7" alt="Raging Bolt">
+            <h2>Raging Bolt</h2>
+            <p>Um Pokémon elétrico e de fogo, conhecido por sua velocidade e ataques poderosos.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.C8ym_CwRh87K7NnMPfcNCQHaHa?w=169&h=180&c=7&r=0&o=5&pid=1.7" alt="Gouging Fire">
+            <h2>Gouging Fire</h2>
+            <p>Um Pokémon de fogo feroz, com ataques devastadores.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.HIcEYldS14Po563HxVjONQHaGZ?w=201&h=180&c=7&r=0&o=5&pid=1.7" alt="Ceruledge">
+            <h2>Ceruledge</h2>
+            <p>Um Pokémon de fogo e fantasma, com lâminas flamejantes em seus braços.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.lqgyReSo0apo0_jTOFFfIQHaHa?w=168&h=180&c=7&r=0&o=5&pid=1.7" alt="Armarouge">
+            <h2>Armarouge</h2>
+            <p>Um Pokémon de fogo e psíquico, com uma armadura brilhante.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.YUbXeYDSxhDGkH-Acc_RIAAAAA?w=115&h=180&c=7&r=0&o=5&pid=1.7" alt="Charcadet">
+            <h2>Charcadet</h2>
+            <p>Um pequeno Pokémon de fogo, conhecido por sua coragem e determinação.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.C8U8IIRs-XBN_WR39JueAQHaHa?w=175&h=180&c=7&r=0&o=5&pid=1.7" alt="Skeledirge">
+            <h2>Skeledirge</h2>
+            <p>Um Pokémon de fogo e fantasma, com uma aparência esquelética.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.o4g1iMdBlecmEPF4O5IQgwHaG1?w=197&h=182&c=7&r=0&o=5&pid=1.7" alt="Crocalor">
+            <h2>Crocalor</h2>
+            <p>Um Pokémon de fogo, com uma aparência de crocodilo.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.YSFK0uink1Y404FeD0w2qwHaHa?w=149&h=180&c=7&r=0&o=5&pid=1.7" alt="Fuecoco">
+            <h2>Fuecoco</h2>
+            <p>Um Pokémon inicial de fogo, com uma aparência de crocodilo.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.7mHkXkoiVAe3lj-b4PJOhQAAAA?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Terapagos (Normal Form)">
+            <h2>Terapagos (Normal Form)</h2>
+            <p>Um Pokémon lendário com uma conexão profunda com a natureza.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.5_vAeJbLZkXFbXW5-A7arQHaHa?w=175&h=180&c=7&r=0&o=5&pid=1.7" alt="Terapagos (Stellar Form)">
+            <h2>Terapagos (Stellar Form)</h2>
+            <p>A forma estelar de Terapagos, com habilidades aprimoradas.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.dS1bPI8ZySBKesRhnb5mywHaG3?w=175&h=180&c=7&r=0&o=5&pid=1.7" alt="Terapagos (Terastal Form)">
+            <h2>Terapagos (Terastal Form)</h2>
+            <p>A forma Terastal de Terapagos, com uma aparência cristalina.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.tPxnqQskVzCW6F-FTsLEGQHaG1?w=183&h=180&c=7&r=0&o=5&pid=1.7" alt="Hydrapple">
+            <h2>Hydrapple</h2>
+            <p>Um Pokémon de planta e dragão, com uma aparência de maçã.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.xEkK5wo94Hl7oOr-i4s5TAHaHa?w=160&h=180&c=7&r=0&o=5&pid=1.7" alt="Dipplin">
+            <h2>Dipplin</h2>
+            <p>Um Pokémon de planta e dragão, com uma aparência de maçã caramelizada.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.eZzGh9ZwiZGi6_5XHEkz2wHaF1?w=230&h=181&c=7&r=0&o=5&pid=1.7" alt="Arboliva">
+            <h2>Arboliva</h2>
+            <p>Um Pokémon de planta e normal, com uma aparência de oliveira.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.moF3yfhKtYZrc6dLU63jhAHaG1?w=185&h=180&c=7&r=0&o=5&pid=1.7" alt="Dolliv">
+            <h2>Dolliv</h2>
+            <p>A forma evoluída de Smoliv, com uma aparência de oliveira.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.P5NYRWVHjr2w9_dMpwAEnAHaHa?w=200&h=200&c=7&r=0&o=5&pid=1.7" alt="Smoliv">
+            <h2>Smoliv</h2>
+            <p>Um pequeno Pokémon de planta, com uma aparência de azeitona.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.h2_DhUCQC7DR6LgWlmYiYwHaHa?w=216&h=216&c=7&r=0&o=5&pid=1.7" alt="Meowscarada">
+            <h2>Meowscarada</h2>
+            <p>Um Pokémon de planta e sombrio, com uma aparência de felino.</p>
+        </div>
+    
+        <div class="card">
+            <img src="data:image/jpeg;base64,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" alt="Floragato">
+            <h2>Floragato</h2>
+            <p>A forma evoluída de Sprigatito, com uma aparência de gato.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.jUGJ-YTKpUv10l4XY4JKUQHaG1?w=225&h=208&c=7&r=0&o=5&pid=1.7" alt="Sprigatito">
+            <h2>Sprigatito</h2>
+            <p>Um Pokémon inicial de planta, com uma aparência de gato.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.-ZepUDLPIqdab1zxn07jbgAAAA?w=115&h=180&c=7&r=0&o=5&pid=1.7" alt="Iron Crown">
+            <h2>Iron Crown</h2>
+            <p>Um Pokémon de aço e elétrico, com uma aparência imponente.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.Mu_jYnO3Qt2OtqkP5OgnBgHaHa?w=145&h=180&c=7&r=0&o=5&pid=1.7" alt="Iron Boulder">
+            <h2>Iron Boulder</h2>
+            <p>Um Pokémon de aço e elétrico, com uma aparência robusta.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.bEo3wMC636KV6Av-ejuWowHaHy?w=148&h=180&c=7&r=0&o=5&pid=1.7" alt="Kilowattrel">
+            <h2>Kilowattrel</h2>
+            <p>Um Pokémon elétrico e voador, com uma aparência de pássaro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.0R-hQ8YC4R3hFcTU-KtvvgHaHa?w=179&h=180&c=7&r=0&o=5&pid=1.7" alt="Wattrel">
+            <h2>Wattrel</h2>
+            <p>A forma pré-evoluída de Kilowattrel, com uma aparência de pássaro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.ZQa3XkvBMCncGG1vUX-u1wHaHa?w=143&h=180&c=7&r=0&o=5&pid=1.7" alt="Bellibolt">
+            <h2>Bellibolt</h2>
+            <p>Um Pokémon elétrico, com uma aparência de sapo.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.HQuWsr8uuleKZeO12CBMCwAAAA?w=171&h=176&c=7&r=0&o=5&pid=1.7" alt="Tadbulb">
+            <h2>Tadbulb</h2>
+            <p>A forma pré-evoluída de Bellibolt, com uma aparência de girino.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.umQHmbLOWO9rUIxt9Bcx9gAAAA?w=159&h=180&c=7&r=0&o=5&pid=1.7" alt="Pawmot">
+            <h2>Pawmot</h2>
+            <p>Um Pokémon elétrico e lutador, com uma aparência de roedor.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.ARkBvTUqhM2i9AOJaR384AAAAA?w=144&h=180&c=7&r=0&o=5&pid=1.7" alt="Pawmo">
+            <h2>Pawmo</h2>
+            <p>A forma evoluída de Pawmi, com uma aparência de roedor.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.tConhCQqHHh_q6UyI7DeuAHaG1?w=209&h=193&c=7&r=0&o=5&pid=1.7" alt="Pawmi">
+            <h2>Pawmi</h2>
+            <p>Um pequeno Pokémon elétrico, com uma aparência de roedor.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.caK0MoYAJAtugJzWyTMYDAAAAA?w=161&h=180&c=7&r=0&o=5&pid=1.7" alt="Sinistcha">
+            <h2>Sinistcha</h2>
+            <p>Um Pokémon fantasma e planta, com uma aparência de chá.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.k77Jlm2MkQboS2DihjHtGQHaFz?w=231&h=181&c=7&r=0&o=5&pid=1.7" alt="Poltchageist">
+            <h2>Poltchageist</h2>
+            <p>A forma evoluída de Sinistcha, com uma aparência de bule de chá.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.IWJ0EBGc2ZpUXMViH5I5hAHaM7?w=115&h=200&c=7&r=0&o=5&pid=1.7" alt="Gholdengo">
+            <h2>Gholdengo</h2>
+            <p>Um Pokémon fantasma e aço, com uma aparência de tesouro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.mZUSdazMdlUkJmymXKXRUAHaHF?w=185&h=180&c=7&r=0&o=5&pid=1.7" alt="Gimmighoul (Roaming Form)">
+            <h2>Gimmighoul (Roaming Form)</h2>
+            <p>Um Pokémon fantasma, com uma aparência de moeda.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.6mMvppcmfvSFV50U3M-L6AHaKE?w=137&h=186&c=7&r=0&o=5&pid=1.7" alt="Gimmighoul (Chest Form)">
+            <h2>Gimmighoul (Chest Form)</h2>
+            <p>A forma de baú de Gimmighoul, com uma aparência de tesouro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.HtFI3_xurfhGx7zk6TWHegHaHa?w=176&h=180&c=7&r=0&o=5&pid=1.7" alt="Houndstone">
+            <h2>Houndstone</h2>
+            <p>Um Pokémon fantasma e terrestre, com uma aparência de cão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.K3bz1hQWgdqWgVdJjgeKvAHaJb?w=115&h=180&c=7&r=0&o=5&pid=1.7" alt="Greavard">
+            <h2>Greavard</h2>
+            <p>A forma pré-evoluída de Houndstone, com uma aparência de cão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.-DJ7TN6UmxUyTxktLw2b5wHaGM?w=209&h=180&c=7&r=0&o=5&pid=1.7" alt="Flutter Mane">
+            <h2>Flutter Mane</h2>
+            <p>Um Pokémon fantasma e fada, com uma aparência etérea.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.XxdykVHl0KdWXM4FZXOEPwHaHa?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Annihilape">
+            <h2>Annihilape</h2>
+            <p>Um Pokémon lutador e fantasma, com uma aparência feroz.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.u3vU_i1DVbvDjXZlzNGiFgHaHa?w=179&h=180&c=7&r=0&o=5&pid=1.7" alt="Iron Hands">
+            <h2>Iron Hands</h2>
+            <p>Um Pokémon lutador e elétrico, com uma aparência robusta.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.obKhWf7ovTPL_CpVTM534wHaIC?w=166&h=180&c=7&r=0&o=5&pid=1.7" alt="Iron Valiant">
+            <h2>Iron Valiant</h2>
+            <p>Um Pokémon lutador e fada, com uma aparência elegante.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.Y7Kj6YFr2Cae-WONGkl_bQHaEY?w=292&h=180&c=7&r=0&o=5&pid=1.7" alt="Great Tusk">
+            <h2>Great Tusk</h2>
+            <p>Um Pokémon lutador e terrestre, com uma aparência de mamute.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.bKWtftwbiVI_T2NUkPYBsQHaHa?w=141&h=180&c=7&r=0&o=5&pid=1.7" alt="Kingambit">
+            <h2>Kingambit</h2>
+            <p>Um Pokémon lutador e sombrio, com uma aparência de guerreiro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.hMuD838yGs_OQtOtCExZkwHaG1?w=191&h=180&c=7&r=0&o=5&pid=1.7" alt="Okidogi">
+            <h2>Okidogi</h2>
+            <p>Um Pokémon lutador e venenoso, com uma aparência de cão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.a_FDp6VHWqRqWIT7ZN1JfgHaOA?w=115&h=180&c=7&r=0&o=5&pid=1.7" alt="Munkidori">
+            <h2>Munkidori</h2>
+            <p>Um Pokémon lutador e venenoso, com uma aparência de macaco.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.o4lhE8Qv3vEpeOQ_QZcjYAHaHa?w=173&h=180&c=7&r=0&o=5&pid=1.7" alt="Miraidon">
+            <h2>Miraidon</h2>
+            <p>Um Pokémon dragão e elétrico, com uma aparência futurista.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.NHCjDYDc5OTq041epYQRQwHaH3?w=171&h=182&c=7&r=0&o=5&pid=1.7" alt="Koraidon">
+            <h2>Koraidon</h2>
+            <p>Um Pokémon dragão e lutador, com uma aparência pré-histórica.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.YV5ICdIb3aHaUjTxRjkDIwHaIJ?w=146&h=180&c=7&r=0&o=5&pid=1.7" alt="Roaring Moon">
+            <h2>Roaring Moon</h2>
+            <p>Um Pokémon dragão e sombrio, com uma aparência de dragão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.zJIhMB4D5H7MIJmwftKR2gHaHa?w=165&h=180&c=7&r=0&o=5&pid=1.7" alt="Baxcalibur">
+            <h2>Baxcalibur</h2>
+            <p>Um Pokémon dragão e gelo, com uma aparência de dinossauro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.JDWIC7FisEb_-dg7dfiAtQAAAA?w=126&h=176&c=7&r=0&o=5&pid=1.7" alt="Arctibax">
+            <h2>Arctibax</h2>
+            <p>A forma evoluída de Frigibax, com uma aparência de dinossauro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.c5CeAjoapJfDJlG0nJlCJwHaHa?w=172&h=180&c=7&r=0&o=5&pid=1.7" alt="Frigibax">
+            <h2>Frigibax</h2>
+            <p>Um pequeno Pokémon dragão e gelo, com uma aparência de dinossauro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.4_PzjB9rCc35famFC7442QHaHa?w=176&h=180&c=7&r=0&o=5&pid=1.7" alt="Chi-Yu">
+            <h2>Chi-Yu</h2>
+            <p>Um Pokémon sombrio e fogo, com uma aparência de peixe.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.OHp0nEhIDgW69LIM8f-G0gHaHa?w=164&h=180&c=7&r=0&o=5&pid=1.7" alt="Ting-Lu">
+            <h2>Ting-Lu</h2>
+            <p>Um Pokémon sombrio e terrestre, com uma aparência de alce.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.N7J-1EtKwrjR57vF69ahPAHaHa?w=164&h=180&c=7&r=0&o=5&pid=1.7" alt="Chien-Pao">
+            <h2>Chien-Pao</h2>
+            <p>Um Pokémon sombrio e gelo, com uma aparência de felino.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.oMfF6k4iXEBfJxkv3p1qtAAAAA?w=159&h=180&c=7&r=0&o=5&pid=1.7" alt="Wo-Chien">
+            <h2>Wo-Chien</h2>
+            <p>Um Pokémon sombrio e planta, com uma aparência de caracol.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.YejV0n_TQ8VPG7x6PCRkVwHaHa?w=141&h=180&c=7&r=0&o=5&pid=1.7" alt="Grafaiai">
+            <h2>Grafaiai</h2>
+            <p>Um Pokémon sombrio e venenoso, com uma aparência de lêmure.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.cgof2psg6wH-_kBrTN-7nAAAAA?w=192&h=180&c=7&r=0&o=5&pid=1.7" alt="Shroodle">
+            <h2>Shroodle</h2>
+            <p>A forma pré-evoluída de Grafaiai, com uma aparência de lêmure.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.D-IO2E3uijdZJzWgpiBW7QHaGw?w=176&h=180&c=7&r=0&o=5&pid=1.7" alt="Mabosstiff">
+            <h2>Mabosstiff</h2>
+            <p>Um Pokémon sombrio, com uma aparência de cão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.rdjf29HNgykNQ6F70e3wLgAAAA?w=231&h=180&c=7&r=0&o=5&pid=1.7" alt="Maschiff">
+            <h2>Maschiff</h2>
+            <p>A forma pré-evoluída de Mabosstiff, com uma aparência de cão.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.VoTJ7LgCcM9CoLjv6QHcwQHaHa?w=184&h=184&c=7&r=0&o=5&pid=1.7" alt="Ogerpon (Cornerstone Mask)">
+            <h2>Ogerpon (Cornerstone Mask)</h2>
+            <p>Um Pokémon fada e planta, com uma máscara de pedra.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.oiJSjmod4oUY4mG9c5ScbgHaHa?w=184&h=184&c=7&r=0&o=5&pid=1.7" alt="Ogerpon (Hearthflame Mask)">
+            <h2>Ogerpon (Hearthflame Mask)</h2>
+            <p>Um Pokémon fada e fogo, com uma máscara flamejante.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.obF6xPKZ568BC8oH0BVNqgHaHa?w=167&h=180&c=7&r=0&o=5&pid=1.7" alt="Ogerpon (Wellspring Mask)">
+            <h2>Ogerpon (Wellspring Mask)</h2>
+            <p>Um Pokémon fada e água, com uma máscara aquática.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.opN4KCQg8bM38ic0mo3QkwHaHa?w=175&h=180&c=7&r=0&o=5&pid=1.7" alt="Ogerpon (Teal Mask)">
+            <h2>Ogerpon (Teal Mask)</h2>
+            <p>Um Pokémon fada e planta, com uma máscara verde.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.Z5U4YVz5CgOLDx7o-2rNHwHaHb?w=170&h=180&c=7&r=0&o=5&pid=1.7" alt="Fezandipiti">
+            <h2>Fezandipiti</h2>
+            <p>Um Pokémon fada e venenoso, com uma aparência de pássaro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.OTwm5oiC8S3p-A_xZguzjgHaFy?w=272&h=213&c=7&r=0&o=5&pid=1.7" alt="Scream Tail">
+            <h2>Scream Tail</h2>
+            <p>Um Pokémon fada e psíquico, com uma aparência de Jigglypuff.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.sqfR0UjzbdH6a1vLkJvU0QHaHa?w=141&h=180&c=7&r=0&o=5&pid=1.7" alt="Brute Bonnet">
+            <h2>Brute Bonnet</h2>
+            <p>Um Pokémon fada e planta, com uma aparência de cogumelo.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.UTvJNJM5NPT3J0yXjGpfCAHaHa?w=162&h=180&c=7&r=0&o=5&pid=1.7" alt="Tinkaton">
+            <h2>Tinkaton</h2>
+            <p>Um Pokémon fada e aço, com uma aparência de guerreiro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.3VYkE5xrhHGuhfaygqsS9wHaG1?w=192&h=180&c=7&r=0&o=5&pid=1.7" alt="Tinkatuff">
+            <h2>Tinkatuff</h2>
+            <p>A forma evoluída de Tinkatink, com uma aparência de guerreiro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.oji-CPsTEBfS2pzL1JrXyAHaHa?w=217&h=217&c=7&r=0&o=5&pid=1.7" alt="Tinkatink">
+            <h2>Tinkatink</h2>
+            <p>Um pequeno Pokémon fada e aço, com uma aparência de guerreiro.</p>
+        </div>
+    
+        <div class="card">  
+            <img src="https://th.bing.com/th/id/OIP.bQlZnGX-9uUBTC9Ho-7ZtAHaHa?w=164&h=180&c=7&r=0&o=5&pid=1.7" alt="Flamigo">
+            <h2>Flamigo</h2>
+            <p>Um Pokémon voador e lutador, com uma aparência de flamingo.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.PDM20noNGRG3x2Zc_ZBI0gHaHH?w=194&h=187&c=7&r=0&o=5&pid=1.7" alt="Bombirdier">
+            <h2>Bombirdier</h2>
+            <p>Um Pokémon voador e sombrio, com uma aparência de pássaro.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.CwSvo7rIwLL3Zv14emKRBgHaHa?w=158&h=180&c=7&r=0&o=5&pid=1.7" alt="Squawkabilly (White Plumage)">
+            <h2>Squawkabilly (White Plumage)</h2>
+            <p>Um Pokémon voador e normal, com uma plumagem branca.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.TUmyqcdUqXziuetfQv5X1AHaHa?w=180&h=180&c=7&r=0&o=5&pid=1.7" alt="Squawkabilly (Yellow Plumage)">
+            <h2>Squawkabilly (Yellow Plumage)</h2>
+            <p>Um Pokémon voador e normal, com uma plumagem amarela.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.-ZB0QPIbPDEaGa0cX2ULBgHaHa?w=177&h=180&c=7&r=0&o=5&pid=1.7" alt="Squawkabilly (Blue Plumage)">
+            <h2>Squawkabilly (Blue Plumage)</h2>
+            <p>Um Pokémon voador e normal, com uma plumagem azul.</p>
+        </div>
+    
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.vbs27KqGW-XHyw0za5oXIgHaHa?w=143&h=180&c=7&r=0&o=5&pid=1.7" alt="Squawkabilly (Green Plumage)">
+            <h2>Squawkabilly (Green Plumage)</h2>
+            <p>Um Pokémon voador e normal, com uma plumagem verde.</p>
+        </div>
+    
+</body>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -7,503 +7,70 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #000000;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
         }
-        .card {
-            background: white;
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 10px;
-            width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width:300px;
+        }
+        .form-container h1 {
             text-align: center;
-            overflow: hidden;
+            margin-bottom: 20px;
         }
-        .card img {
+        .form-container label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-container input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-container button {
             width: 100%;
-            height: auto;
+            padding: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
         }
-        .card h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
+        .form-container button:hover {
+            background-color:#363636;
         }
-        .card p {
-            padding: 0 10px 10px;
+        .colordobagui{
             color: #555;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1007.png" alt="Tatsugiri (Stretchy Form)">
-        <h2>Tatsugiri (Stretchy Form)</h2>
-        <p>Um Pokémon pequeno e ágil que se assemelha a um sushi. Ele é conhecido por sua habilidade de mudar de forma.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1008.png" alt="Tatsugiri (Droopy Form)">
-        <h2>Tatsugiri (Droopy Form)</h2>
-        <p>Outra forma de Tatsugiri, com uma aparência mais relaxada e caída.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1009.png" alt="Tatsugiri (Curly Form)">
-        <h2>Tatsugiri (Curly Form)</h2>
-        <p>A terceira forma de Tatsugiri, com um corpo enrolado.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1010.png" alt="Dondozo">
-        <h2>Dondozo</h2>
-        <p>Um grande Pokémon aquático que se destaca por sua força e resistência.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1011.png" alt="Veluza">
-        <h2>Veluza</h2>
-        <p>Um Pokémon peixe rápido e ágil, conhecido por suas habilidades de natação.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1012.png" alt="Raging Bolt">
-        <h2>Raging Bolt</h2>
-        <p>Um Pokémon elétrico e de fogo, conhecido por sua velocidade e ataques poderosos.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1013.png" alt="Gouging Fire">
-        <h2>Gouging Fire</h2>
-        <p>Um Pokémon de fogo feroz, com ataques devastadores.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1014.png" alt="Ceruledge">
-        <h2>Ceruledge</h2>
-        <p>Um Pokémon de fogo e fantasma, com lâminas flamejantes em seus braços.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1015.png" alt="Armarouge">
-        <h2>Armarouge</h2>
-        <p>Um Pokémon de fogo e psíquico, com uma armadura brilhante.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1016.png" alt="Charcadet">
-        <h2>Charcadet</h2>
-        <p>Um pequeno Pokémon de fogo, conhecido por sua coragem e determinação.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1017.png" alt="Skeledirge">
-        <h2>Skeledirge</h2>
-        <p>Um Pokémon de fogo e fantasma, com uma aparência esquelética.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1018.png" alt="Crocalor">
-        <h2>Crocalor</h2>
-        <p>Um Pokémon de fogo, com uma aparência de crocodilo.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1019.png" alt="Fuecoco">
-        <h2>Fuecoco</h2>
-        <p>Um Pokémon inicial de fogo, com uma aparência de crocodilo.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1020.png" alt="Terapagos (Normal Form)">
-        <h2>Terapagos (Normal Form)</h2>
-        <p>Um Pokémon lendário com uma conexão profunda com a natureza.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1021.png" alt="Terapagos (Stellar Form)">
-        <h2>Terapagos (Stellar Form)</h2>
-        <p>A forma estelar de Terapagos, com habilidades aprimoradas.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1022.png" alt="Terapagos (Terastal Form)">
-        <h2>Terapagos (Terastal Form)</h2>
-        <p>A forma Terastal de Terapagos, com uma aparência cristalina.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1023.png" alt="Hydrapple">
-        <h2>Hydrapple</h2>
-        <p>Um Pokémon de planta e dragão, com uma aparência de maçã.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1024.png" alt="Dipplin">
-        <h2>Dipplin</h2>
-        <p>Um Pokémon de planta e dragão, com uma aparência de maçã caramelizada.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1025.png" alt="Arboliva">
-        <h2>Arboliva</h2>
-        <p>Um Pokémon de planta e normal, com uma aparência de oliveira.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1026.png" alt="Dolliv">
-        <h2>Dolliv</h2>
-        <p>A forma evoluída de Smoliv, com uma aparência de oliveira.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1027.png" alt="Smoliv">
-        <h2>Smoliv</h2>
-        <p>Um pequeno Pokémon de planta, com uma aparência de azeitona.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1028.png" alt="Meowscarada">
-        <h2>Meowscarada</h2>
-        <p>Um Pokémon de planta e sombrio, com uma aparência de felino.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1029.png" alt="Floragato">
-        <h2>Floragato</h2>
-        <p>A forma evoluída de Sprigatito, com uma aparência de gato.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1030.png" alt="Sprigatito">
-        <h2>Sprigatito</h2>
-        <p>Um Pokémon inicial de planta, com uma aparência de gato.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1031.png" alt="Iron Crown">
-        <h2>Iron Crown</h2>
-        <p>Um Pokémon de aço e elétrico, com uma aparência imponente.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1032.png" alt="Iron Boulder">
-        <h2>Iron Boulder</h2>
-        <p>Um Pokémon de aço e elétrico, com uma aparência robusta.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1033.png" alt="Kilowattrel">
-        <h2>Kilowattrel</h2>
-        <p>Um Pokémon elétrico e voador, com uma aparência de pássaro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1034.png" alt="Wattrel">
-        <h2>Wattrel</h2>
-        <p>A forma pré-evoluída de Kilowattrel, com uma aparência de pássaro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1035.png" alt="Bellibolt">
-        <h2>Bellibolt</h2>
-        <p>Um Pokémon elétrico, com uma aparência de sapo.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1036.png" alt="Tadbulb">
-        <h2>Tadbulb</h2>
-        <p>A forma pré-evoluída de Bellibolt, com uma aparência de girino.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1037.png" alt="Pawmot">
-        <h2>Pawmot</h2>
-        <p>Um Pokémon elétrico e lutador, com uma aparência de roedor.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1038.png" alt="Pawmo">
-        <h2>Pawmo</h2>
-        <p>A forma evoluída de Pawmi, com uma aparência de roedor.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1039.png" alt="Pawmi">
-        <h2>Pawmi</h2>
-        <p>Um pequeno Pokémon elétrico, com uma aparência de roedor.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1040.png" alt="Sinistcha">
-        <h2>Sinistcha</h2>
-        <p>Um Pokémon fantasma e planta, com uma aparência de chá.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1041.png" alt="Poltchageist">
-        <h2>Poltchageist</h2>
-        <p>A forma evoluída de Sinistcha, com uma aparência de bule de chá.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1042.png" alt="Gholdengo">
-        <h2>Gholdengo</h2>
-        <p>Um Pokémon fantasma e aço, com uma aparência de tesouro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1043.png" alt="Gimmighoul (Roaming Form)">
-        <h2>Gimmighoul (Roaming Form)</h2>
-        <p>Um Pokémon fantasma, com uma aparência de moeda.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1044.png" alt="Gimmighoul (Chest Form)">
-        <h2>Gimmighoul (Chest Form)</h2>
-        <p>A forma de baú de Gimmighoul, com uma aparência de tesouro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1045.png" alt="Houndstone">
-        <h2>Houndstone</h2>
-        <p>Um Pokémon fantasma e terrestre, com uma aparência de cão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1046.png" alt="Greavard">
-        <h2>Greavard</h2>
-        <p>A forma pré-evoluída de Houndstone, com uma aparência de cão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1047.png" alt="Flutter Mane">
-        <h2>Flutter Mane</h2>
-        <p>Um Pokémon fantasma e fada, com uma aparência etérea.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1048.png" alt="Annihilape">
-        <h2>Annihilape</h2>
-        <p>Um Pokémon lutador e fantasma, com uma aparência feroz.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1049.png" alt="Iron Hands">
-        <h2>Iron Hands</h2>
-        <p>Um Pokémon lutador e elétrico, com uma aparência robusta.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1050.png" alt="Iron Valiant">
-        <h2>Iron Valiant</h2>
-        <p>Um Pokémon lutador e fada, com uma aparência elegante.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1051.png" alt="Great Tusk">
-        <h2>Great Tusk</h2>
-        <p>Um Pokémon lutador e terrestre, com uma aparência de mamute.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1052.png" alt="Kingambit">
-        <h2>Kingambit</h2>
-        <p>Um Pokémon lutador e sombrio, com uma aparência de guerreiro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1053.png" alt="Okidogi">
-        <h2>Okidogi</h2>
-        <p>Um Pokémon lutador e venenoso, com uma aparência de cão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1054.png" alt="Munkidori">
-        <h2>Munkidori</h2>
-        <p>Um Pokémon lutador e venenoso, com uma aparência de macaco.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1055.png" alt="Miraidon">
-        <h2>Miraidon</h2>
-        <p>Um Pokémon dragão e elétrico, com uma aparência futurista.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1056.png" alt="Koraidon">
-        <h2>Koraidon</h2>
-        <p>Um Pokémon dragão e lutador, com uma aparência pré-histórica.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1057.png" alt="Roaring Moon">
-        <h2>Roaring Moon</h2>
-        <p>Um Pokémon dragão e sombrio, com uma aparência de dragão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1058.png" alt="Baxcalibur">
-        <h2>Baxcalibur</h2>
-        <p>Um Pokémon dragão e gelo, com uma aparência de dinossauro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1059.png" alt="Arctibax">
-        <h2>Arctibax</h2>
-        <p>A forma evoluída de Frigibax, com uma aparência de dinossauro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1060.png" alt="Frigibax">
-        <h2>Frigibax</h2>
-        <p>Um pequeno Pokémon dragão e gelo, com uma aparência de dinossauro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1061.png" alt="Chi-Yu">
-        <h2>Chi-Yu</h2>
-        <p>Um Pokémon sombrio e fogo, com uma aparência de peixe.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1062.png" alt="Ting-Lu">
-        <h2>Ting-Lu</h2>
-        <p>Um Pokémon sombrio e terrestre, com uma aparência de alce.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1063.png" alt="Chien-Pao">
-        <h2>Chien-Pao</h2>
-        <p>Um Pokémon sombrio e gelo, com uma aparência de felino.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1064.png" alt="Wo-Chien">
-        <h2>Wo-Chien</h2>
-        <p>Um Pokémon sombrio e planta, com uma aparência de caracol.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1065.png" alt="Grafaiai">
-        <h2>Grafaiai</h2>
-        <p>Um Pokémon sombrio e venenoso, com uma aparência de lêmure.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1066.png" alt="Shroodle">
-        <h2>Shroodle</h2>
-        <p>A forma pré-evoluída de Grafaiai, com uma aparência de lêmure.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1067.png" alt="Mabosstiff">
-        <h2>Mabosstiff</h2>
-        <p>Um Pokémon sombrio, com uma aparência de cão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1068.png" alt="Maschiff">
-        <h2>Maschiff</h2>
-        <p>A forma pré-evoluída de Mabosstiff, com uma aparência de cão.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1069.png" alt="Ogerpon (Cornerstone Mask)">
-        <h2>Ogerpon (Cornerstone Mask)</h2>
-        <p>Um Pokémon fada e planta, com uma máscara de pedra.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1070.png" alt="Ogerpon (Hearthflame Mask)">
-        <h2>Ogerpon (Hearthflame Mask)</h2>
-        <p>Um Pokémon fada e fogo, com uma máscara flamejante.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1071.png" alt="Ogerpon (Wellspring Mask)">
-        <h2>Ogerpon (Wellspring Mask)</h2>
-        <p>Um Pokémon fada e água, com uma máscara aquática.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1072.png" alt="Ogerpon (Teal Mask)">
-        <h2>Ogerpon (Teal Mask)</h2>
-        <p>Um Pokémon fada e planta, com uma máscara verde.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1073.png" alt="Fezandipiti">
-        <h2>Fezandipiti</h2>
-        <p>Um Pokémon fada e venenoso, com uma aparência de pássaro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1074.png" alt="Scream Tail">
-        <h2>Scream Tail</h2>
-        <p>Um Pokémon fada e psíquico, com uma aparência de Jigglypuff.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1075.png" alt="Brute Bonnet">
-        <h2>Brute Bonnet</h2>
-        <p>Um Pokémon fada e planta, com uma aparência de cogumelo.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1076.png" alt="Tinkaton">
-        <h2>Tinkaton</h2>
-        <p>Um Pokémon fada e aço, com uma aparência de guerreiro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1077.png" alt="Tinkatuff">
-        <h2>Tinkatuff</h2>
-        <p>A forma evoluída de Tinkatink, com uma aparência de guerreiro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1078.png" alt="Tinkatink">
-        <h2>Tinkatink</h2>
-        <p>Um pequeno Pokémon fada e aço, com uma aparência de guerreiro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1079.png" alt="Flamigo">
-        <h2>Flamigo</h2>
-        <p>Um Pokémon voador e lutador, com uma aparência de flamingo.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1080.png" alt="Bombirdier">
-        <h2>Bombirdier</h2>
-        <p>Um Pokémon voador e sombrio, com uma aparência de pássaro.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1081.png" alt="Squawkabilly (White Plumage)">
-        <h2>Squawkabilly (White Plumage)</h2>
-        <p>Um Pokémon voador e normal, com uma plumagem branca.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1082.png" alt="Squawkabilly (Yellow Plumage)">
-        <h2>Squawkabilly (Yellow Plumage)</h2>
-        <p>Um Pokémon voador e normal, com uma plumagem amarela.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1083.png" alt="Squawkabilly (Blue Plumage)">
-        <h2>Squawkabilly (Blue Plumage)</h2>
-        <p>Um Pokémon voador e normal, com uma plumagem azul.</p>
-    </div>
-
-    <div class="card">
-        <img src="https://pokeapi.co/media/sprites/pokemon/1084.png" alt="Squawkabilly (Green Plumage)">
-        <h2>Squawkabilly (Green Plumage)</h2>
-        <p>Um Pokémon voador e normal, com uma plumagem verde.</p>
+    <div class="form-container">
+        <h1 class="colordobagui">Cadastre seu Pokémon</h1>
+        <form action="#" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="regiao">Região:</label>
+            <input type="text" id="regiao" name="regiao" required>
+
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo" required>
+
+            <button type="submit">Cadastrar Pokémon</button>
+        </form>
     </div>
 
 </body>
